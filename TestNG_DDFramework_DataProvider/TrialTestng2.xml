@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Appointment">
+    <test name="BackhaulAppointment">
+    <parameter name="Freight_BackhaulPuchaseOrder" value="A-205897"/>
+         <classes>
+         	 <class name="MAWM_Validations.PuchaseOrder_MAWM_Validation"/>
+             <class name="Backhaul_TLM.AppointmentCreation"/>
+             <class name="MAWM_Validations.TLM_Appointment_MAWM_Validation"/>
+             
+            
+          </classes>
+          
+          <!--
+          
+     </test> 
+         <test name="PrePaid">
+    <parameter name="PrepaidPuchaseOrder" value="A-205897"/>
+         <classes>
+         	 <class name="MAWM_Validations.PuchaseOrder_MAWM_Validation"/>
+             <class name="Prepaid_TLM.AptCreation"/>
+             <class name="MAWM_Validations.TLM_Appointment_MAWM_Validation"/>
+             
+           
+            -->
+            
+          </classes>
+     </test> <!-- Test -->
+</suite> <!-- Suite -->

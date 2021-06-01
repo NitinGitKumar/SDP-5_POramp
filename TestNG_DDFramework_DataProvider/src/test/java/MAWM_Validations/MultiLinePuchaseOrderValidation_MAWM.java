@@ -1,0 +1,198 @@
+package MAWM_Validations;
+
+import java.util.ArrayList;
+import java.util.Set;
+import java.util.concurrent.TimeUnit;
+
+import org.testng.Assert;
+import org.testng.annotations.*;
+
+import Backhaul_TLM.SpreadSheetRdWRdSingleColumn2;
+import utility.extractExcelContentByColumnRowIndex;
+
+import static org.testng.Assert.*;
+
+import org.apache.commons.lang3.StringUtils;
+import org.openqa.selenium.*;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import java.util.Formatter;
+import java.util.List;
+
+
+public class MultiLinePuchaseOrderValidation_MAWM {
+
+	private WebDriver driver;
+	private boolean acceptNextAlert = true;
+	private StringBuffer verificationErrors = new StringBuffer();
+
+	@BeforeClass(alwaysRun = true)
+	public void setUp() throws Exception {
+
+	
+	  System.setProperty("webdriver.chrome.driver", "/Users/nitinkumar/eclipse-workspace/Project2/Library/Chrome Driver/chromedriver");
+	  driver= new ChromeDriver();
+		
+			/*
+		System.setProperty("webdriver.gecko.driver", "/Users/nitinkumar/eclipse-workspace/Project2/Library/geckodriver/geckodriver");
+		driver= new FirefoxDriver(); 
+ */
+
+	}
+
+
+	@Parameters({"PuchaseOrder" })
+	@Test
+	public void POValidationMAWM() throws Exception {
+		 
+		
+
+		driver.get("https://stshs.sce.manh.com");
+		driver.findElement(By.id("login-username")).sendKeys("vn10307");
+		Thread.sleep(3000);
+		driver.findElement(By.id("discover-user-submit")).click();
+		Thread.sleep(5000);
+		driver.findElement(By.id("login-password")).sendKeys("Schneider0)");
+		Thread.sleep(3000);
+		driver.findElement(By.id("login-submit")).click();
+		Thread.sleep(8000);
+		driver.findElement(By.xpath("//navbar[@id='home-page-navbar']/ion-toolbar/ion-menu-toggle/ion-button")).click();
+		Thread.sleep(3000);
+		driver.findElement(By.name("ion-input-0")).click();
+		Thread.sleep(3000);
+	    driver.findElement(By.name("ion-input-0")).clear();
+	    driver.findElement(By.name("ion-input-0")).sendKeys("Purchase Orders");
+	    Thread.sleep(3000);
+	    driver.findElement(By.name("ion-input-0")).sendKeys(Keys.ENTER);
+	    Thread.sleep(3000);
+	    driver.findElement(By.id("PurchaseOrders")).click();
+	    Thread.sleep(5000);
+	    driver.findElement(By.xpath("//ion-grid/div/ion-col/ion-button")).click();
+	    Thread.sleep(5000);
+	    driver.findElement(By.xpath("//filter-field-header/ion-button")).click();
+	    Thread.sleep(3000);
+	    driver.findElement(By.name("ion-input-4")).click();
+	    Thread.sleep(3000);
+	    driver.findElement(By.name("ion-input-4")).clear();
+	    Thread.sleep(3000);
+	    //driver.findElement(By.name("ion-input-4")).sendKeys(PuchaseOrder);
+	    driver.findElement(By.name("ion-input-4")).sendKeys("A-206532");
+	    Thread.sleep(3000);
+	    driver.findElement(By.name("ion-input-4")).sendKeys(Keys.ENTER);
+		Thread.sleep(8000);
+		String ResultRecord=driver.findElement(By.xpath("//ion-label/span")).getText();
+		String POValidated="Purchase Order created in BICEPS is successfully validated in MAWM";
+		if(ResultRecord.equalsIgnoreCase("Showing 1 - 1 of 1 Record") )
+		{System.out.println(POValidated);
+		
+		}
+			
+		driver.findElement(By.xpath("//div[@class='dm-flex-row-layout dm-fill-space card-row primary']")).click();
+		Thread.sleep(2000);
+		driver.findElement(By.xpath("//button[contains(text(),'Related Links')]")).click();
+		Thread.sleep(2000);
+		driver.findElement(By.xpath("//a[contains(text(),'Purchase Order Line')]")).click();
+		Thread.sleep(5000);
+		
+    	String ExcelPOsitem=extractExcelContentByColumnRowIndex.extractExcelContentByColRowIndex("/Users/nitinkumar/Desktop/MATLMTestdata_Test.xls","Sheet1",3,28);
+    	Thread.sleep(2000);
+	
+    	String ExcelPOsQty=extractExcelContentByColumnRowIndex.extractExcelContentByColRowIndex("/Users/nitinkumar/Desktop/MATLMTestdata_Test.xls","Sheet1",3,29);
+    	Thread.sleep(2000);
+    	
+    	
+    	String[] ExcelPOQty=ExcelPOsQty.split(",");
+    	Thread.sleep(2000);
+    	String[] ExcelPOitem=ExcelPOsitem.split(",");
+    	Thread.sleep(2000);
+    	
+		List<WebElement> AllPOLines=driver.findElements(By.xpath("//div[@class='dm-flex-col-layout dm-fill-space ng-star-inserted']"));
+	    Thread.sleep(2000);
+	    
+	    ArrayList<String> POLineQtyList = new ArrayList<String>();
+	    ArrayList<String> POItemList = new ArrayList<String>();
+	    
+	    
+    	
+    	int finderItem=1;
+    	int finderQty=1;
+    	int i=0;
+
+	    
+	    for(WebElement POLine:AllPOLines  ) 
+	    
+	    {
+    	    // (//span[text()=' Purchase Order Line : ']/following-sibling::span)[1]
+	    	WebElement POLineItemElement=driver.findElement(By.xpath("(//span[text()=' Purchase Order Line : ']/following-sibling::span)["+finderItem+"]"));
+	    	String POLineItem=POLineItemElement.getText();
+	    	POItemList.add(POLineItem);
+	    	  	
+	    	// (//span[text()=' Order quantity(unit) : ']/following-sibling::span)[1]
+	    	WebElement POLineQtyElement=driver.findElement(By.xpath("(//span[text()=' Order quantity(unit) : ']/following-sibling::span)["+finderQty+"]"));
+	    	String POLineQty=POLineQtyElement.getText();
+	    	POLineQtyList.add(POLineQty);
+	 
+	    	finderItem++;
+	    	finderQty++;
+	    	
+			Assert.assertEquals(POLineItem.trim(),ExcelPOitem[i].trim());
+			Assert.assertEquals(POLineQty.trim(),ExcelPOQty[i].trim());
+			i++;
+	    	
+	   
+	    }
+	    System.out.println(POItemList);
+	    System.out.println(POLineQtyList);
+	   
+
+
+	}
+
+
+	@AfterClass(alwaysRun = true)
+	public void tearDown() throws Exception {
+		driver.quit();
+		String verificationErrorString = verificationErrors.toString();
+		if (!"".equals(verificationErrorString)) {
+			fail(verificationErrorString);
+		}
+	}
+
+	private boolean isElementPresent(By by) {
+		try {
+			driver.findElement(by);
+			return true;
+		} catch (NoSuchElementException e) {
+			return false;
+		}
+	}
+
+	private boolean isAlertPresent() {
+		try {
+			driver.switchTo().alert();
+			return true;
+		} catch (NoAlertPresentException e) {
+			return false;
+		}
+	}
+
+	private String closeAlertAndGetItsText() {
+		try {
+			Alert alert = driver.switchTo().alert();
+			String alertText = alert.getText();
+			if (acceptNextAlert) {
+				alert.accept();
+			} else {
+				alert.dismiss();
+			}
+			return alertText;
+		} finally {
+			acceptNextAlert = true;
+		}
+	}
+}
+
+
+

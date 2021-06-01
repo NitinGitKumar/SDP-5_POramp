@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite guice-stage="DEVELOPMENT" name="Failed suite [Appointment]">
+  <test thread-count="5" name="MAWMasnLPN(failed)">
+    <parameter name="BackhaulPuchaseOrder" value="A-206404"/>
+    <classes>
+      <class name="MAWM_Validations.iLPNcreation_MAWM">
+        <methods>
+          <include name="POValidationMAWM"/>
+          <include name="setUp"/>
+          <include name="tearDown"/>
+        </methods>
+      </class> <!-- MAWM_Validations.iLPNcreation_MAWM -->
+    </classes>
+  </test> <!-- MAWMasnLPN(failed) -->
+</suite> <!-- Failed suite [Appointment] -->

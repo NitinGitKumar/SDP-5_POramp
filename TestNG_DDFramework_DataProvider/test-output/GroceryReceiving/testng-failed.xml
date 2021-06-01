@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite guice-stage="DEVELOPMENT" name="Failed suite [GroceryReceiving]">
+  <test thread-count="5" name="MAWMasnLPN(failed)">
+    <parameter name="PuchaseOrder" value="A-206416"/>
+    <classes>
+      <class name="MAWM_Validations.iLPNcaptureUnderGroRecv_MAWM">
+        <methods>
+          <include name="setUp"/>
+          <include name="tearDown"/>
+          <include name="POValidationMAWM" invocation-numbers="0"/>
+        </methods>
+      </class> <!-- MAWM_Validations.iLPNcaptureUnderGroRecv_MAWM -->
+    </classes>
+  </test> <!-- MAWMasnLPN(failed) -->
+</suite> <!-- Failed suite [GroceryReceiving] -->
