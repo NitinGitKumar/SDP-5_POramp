@@ -2,7 +2,7 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="GroceryReceiving">
     <test name="MAWMasnLPN">
-    <parameter name="PuchaseOrder" value="A-206839"/>
+    <parameter name="PuchaseOrder" value="A-206840"/>
          <classes>
          	 <class name="MAWM_Validations.ASNCreation_MAWM"/>    
         	           
