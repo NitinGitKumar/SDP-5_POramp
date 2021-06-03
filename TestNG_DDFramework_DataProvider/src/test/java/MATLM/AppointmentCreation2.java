@@ -1,4 +1,4 @@
-package Backhaul_TLM;
+package MATLM;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -16,7 +16,7 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 
-public class AppointmentCreation {
+public class AppointmentCreation2 {
 
 	private WebDriver driver;
 	private boolean acceptNextAlert = true;
@@ -41,9 +41,9 @@ public class AppointmentCreation {
 		driver.switchTo().window(tabs.get(0));
 		
 	}
-
-	@Parameters({ "BackhaulPuchaseOrder" })
-	@Test(priority = 1)
+/*
+	//@Parameters({ "BackhaulPuchaseOrder" })
+	@Test(priority = 1,dataProvider="DataContainer")
 
 	public void testBackhaulTestCase1(String PurchaseOrder) throws Exception {
 		
@@ -51,15 +51,15 @@ public class AppointmentCreation {
 		Thread.sleep(10000);
 		driver.findElement(By.id("button-1013-btnIconEl")).click(); // Main Menu
 		Thread.sleep(4000);
-		driver.findElement(By.xpath("//div[@id='component-1070']/div[3]/div[2]/span")).click(); //select option Purchase Order
+		driver.findElement(By.xpath("//div[@part='Purchase Orders' and @name='55679']/span")).click(); //select option Purchase Order
 		Thread.sleep(8000);
-		driver.findElement(By.xpath("(//Input[contains(@id,'inputEl')])[6]")).sendKeys("Purchase Order"); //Enter primary Field as Purchase Order
+		driver.findElement(By.xpath("(//Input[contains(@id,'inputEl')])[7]")).sendKeys("Purchase Order"); //Enter primary Field as Purchase Order
 		Thread.sleep(3000);
-		driver.findElement(By.xpath("(//Input[contains(@id,'inputEl')])[6]")).sendKeys(Keys.ENTER);
-		Thread.sleep(3000);
-		driver.findElement(By.xpath("(//Input[contains(@id,'inputEl')])[8]")).sendKeys(PurchaseOrder);// Enter PO number
+		driver.findElement(By.xpath("(//Input[contains(@id,'inputEl')])[7]")).sendKeys(Keys.ENTER);
 		Thread.sleep(5000);
-		driver.findElement(By.xpath("(//Input[contains(@id,'inputEl')])[8]")).sendKeys(Keys.ENTER);
+		driver.findElement(By.xpath("(//Input[contains(@id,'inputEl')])[9]")).sendKeys(PurchaseOrder);// Enter PO number
+		Thread.sleep(5000);
+		driver.findElement(By.xpath("(//Input[contains(@id,'inputEl')])[9]")).sendKeys(Keys.ENTER);
 		Thread.sleep(5000);
 		driver.findElement(By.xpath("(//*[contains(text(),'Apply')])[3]")).click(); // Click Apply
 		WebDriverWait wait=new WebDriverWait(driver, 30);
@@ -80,15 +80,15 @@ if (CreateAppointment.equalsIgnoreCase("Create Appointment")) // Conditional Che
 		Thread.sleep(5000);
 		driver.findElement(By.xpath("//div[@part='Distribution Orders' and @name='55681']/span")).click(); // select option distribution order
 		Thread.sleep(8000);
-		WebElement Search_DO = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath( "(//Input[contains(@id,'inputEl')])[6]"))); //find Primary field
+		WebElement Search_DO = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath( "(//Input[contains(@id,'inputEl')])[7]"))); //find Primary field
 		Search_DO.sendKeys("Distribution Order"); ////Enter primary Field as distribution Order
 		Thread.sleep(3000);
-		driver.findElement(By.xpath("(//Input[contains(@id,'inputEl')])[6]")).sendKeys(Keys.ENTER);
+		driver.findElement(By.xpath("(//Input[contains(@id,'inputEl')])[7]")).sendKeys(Keys.ENTER);
 		String DistOrder=PurchaseOrder.concat("_*");
 		Thread.sleep(3000);
-		driver.findElement(By.xpath("(//Input[contains(@id,'inputEl')])[8]")).sendKeys(DistOrder); //Enter distribution order
+		driver.findElement(By.xpath("(//Input[contains(@id,'inputEl')])[9]")).sendKeys(DistOrder); //Enter distribution order
 		Thread.sleep(6000);
-		driver.findElement(By.xpath("(//Input[contains(@id,'inputEl')])[8]")).sendKeys(Keys.ENTER);
+		driver.findElement(By.xpath("(//Input[contains(@id,'inputEl')])[9]")).sendKeys(Keys.ENTER);
 		driver.findElement(By.xpath("(//*[contains(text(),'Apply')])[3]")).click();
 		Thread.sleep(5000);
 		driver.findElement(By.xpath("//table[contains(@id,'gridview')]//tbody/tr/td/div/div")).click(); // Click Checkbox TO select searched DO
@@ -129,8 +129,8 @@ Thread.sleep(4000);
 	}
 	
 	
-@Parameters({ "BackhaulPuchaseOrder" })
-@Test (priority=2,invocationCount = 1)
+	//@Parameters({ "BackhaulPuchaseOrder" })
+@Test(priority = 2,dataProvider="DataContainer")
 public void testBackhaulTestCase2(String PurchaseOrder) throws Exception {
 
 
@@ -141,16 +141,15 @@ public void testBackhaulTestCase2(String PurchaseOrder) throws Exception {
 	driver.findElement(By.xpath("//div[@part='Distribution Orders' and @name='55681']/span")).click(); // select option distribution order
 	Thread.sleep(8000);
 	WebDriverWait wait=new WebDriverWait(driver, 30);
-	WebElement Search_DO = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath( "(//Input[contains(@id,'inputEl')])[6]"))); //find Primary field
+	WebElement Search_DO = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath( "(//Input[contains(@id,'inputEl')])[7]"))); //find Primary field
 	Search_DO.sendKeys("Distribution Order"); ////Enter primary Field as distribution Order
 	Thread.sleep(3000);
-	driver.findElement(By.xpath("(//Input[contains(@id,'inputEl')])[6]")).sendKeys(Keys.ENTER);
-	Thread.sleep(3000);
+	driver.findElement(By.xpath("(//Input[contains(@id,'inputEl')])[7]")).sendKeys(Keys.ENTER);
 	String DistOrder=PurchaseOrder.concat("_*");
 	Thread.sleep(3000);
-	driver.findElement(By.xpath("(//Input[contains(@id,'inputEl')])[8]")).sendKeys(DistOrder); //Enter distribution order
+	driver.findElement(By.xpath("(//Input[contains(@id,'inputEl')])[9]")).sendKeys(DistOrder); //Enter distribution order
 	Thread.sleep(6000);
-	driver.findElement(By.xpath("(//Input[contains(@id,'inputEl')])[8]")).sendKeys(Keys.ENTER);
+	driver.findElement(By.xpath("(//Input[contains(@id,'inputEl')])[9]")).sendKeys(Keys.ENTER);
 	driver.findElement(By.xpath("(//*[contains(text(),'Apply')])[3]")).click();
 	Thread.sleep(5000);
 	driver.findElement(By.xpath("//table[contains(@id,'gridview')]//tbody/tr/td/div/div")).click(); // Click Checkbox TO select searched DO
@@ -183,8 +182,8 @@ public void testBackhaulTestCase2(String PurchaseOrder) throws Exception {
 }
 
 
-@Parameters({ "BackhaulPuchaseOrder" })
-@Test(priority = 3)
+//@Parameters({ "BackhaulPuchaseOrder" })
+@Test(priority = 3,dataProvider="DataContainer")
 public void testBackhaulTestCase3(String PurchaseOrder) throws Exception {
 
 
@@ -195,16 +194,15 @@ public void testBackhaulTestCase3(String PurchaseOrder) throws Exception {
 	driver.findElement(By.xpath("//div[@part='Distribution Orders' and @name='55681']/span")).click(); // select option distribution order
 	Thread.sleep(8000);
 	WebDriverWait wait=new WebDriverWait(driver, 30);
-	WebElement Search_DO = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath( "(//Input[contains(@id,'inputEl')])[6]"))); //find Primary field
+	WebElement Search_DO = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath( "(//Input[contains(@id,'inputEl')])[7]"))); //find Primary field
 	Search_DO.sendKeys("Distribution Order"); ////Enter primary Field as distribution Order
 	Thread.sleep(3000);
-	driver.findElement(By.xpath("(//Input[contains(@id,'inputEl')])[6]")).sendKeys(Keys.ENTER);
-	Thread.sleep(3000);
+	driver.findElement(By.xpath("(//Input[contains(@id,'inputEl')])[7]")).sendKeys(Keys.ENTER);
 	String DistOrder=PurchaseOrder.concat("_*");
 	Thread.sleep(3000);
-	driver.findElement(By.xpath("(//Input[contains(@id,'inputEl')])[8]")).sendKeys(DistOrder); //Enter distribution order
+	driver.findElement(By.xpath("(//Input[contains(@id,'inputEl')])[9]")).sendKeys(DistOrder); //Enter distribution order
 	Thread.sleep(6000);
-	driver.findElement(By.xpath("(//Input[contains(@id,'inputEl')])[8]")).sendKeys(Keys.ENTER);
+	driver.findElement(By.xpath("(//Input[contains(@id,'inputEl')])[9]")).sendKeys(Keys.ENTER);
 	driver.findElement(By.xpath("(//*[contains(text(),'Apply')])[3]")).click();
 	Thread.sleep(5000);
 	driver.findElement(By.xpath("//table[contains(@id,'gridview')]//tbody/tr/td/div/div")).click(); // Click Checkbox TO select searched DO
@@ -238,8 +236,8 @@ public void testBackhaulTestCase3(String PurchaseOrder) throws Exception {
 }
 
 
-@Parameters({ "BackhaulPuchaseOrder" })
-@Test(priority = 4)
+//@Parameters({ "BackhaulPuchaseOrder" })
+@Test(priority = 4,dataProvider="DataContainer")
 public void testBackhaulTestCase4(String PurchaseOrder) throws Exception {
 
 
@@ -250,16 +248,15 @@ public void testBackhaulTestCase4(String PurchaseOrder) throws Exception {
 	driver.findElement(By.xpath("//div[@part='Distribution Orders' and @name='55681']/span")).click(); // select option distribution order
 	Thread.sleep(8000);
 	WebDriverWait wait=new WebDriverWait(driver, 30);
-	WebElement Search_DO = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath( "(//Input[contains(@id,'inputEl')])[6]"))); //find Primary field
+	WebElement Search_DO = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath( "(//Input[contains(@id,'inputEl')])[7]"))); //find Primary field
 	Search_DO.sendKeys("Distribution Order"); ////Enter primary Field as distribution Order
 	Thread.sleep(3000);
-	driver.findElement(By.xpath("(//Input[contains(@id,'inputEl')])[6]")).sendKeys(Keys.ENTER);
-	Thread.sleep(3000);
+	driver.findElement(By.xpath("(//Input[contains(@id,'inputEl')])[7]")).sendKeys(Keys.ENTER);
 	String DistOrder=PurchaseOrder.concat("_*");
 	Thread.sleep(3000);
-	driver.findElement(By.xpath("(//Input[contains(@id,'inputEl')])[8]")).sendKeys(DistOrder); //Enter distribution order
+	driver.findElement(By.xpath("(//Input[contains(@id,'inputEl')])[9]")).sendKeys(DistOrder); //Enter distribution order
 	Thread.sleep(6000);
-	driver.findElement(By.xpath("(//Input[contains(@id,'inputEl')])[8]")).sendKeys(Keys.ENTER);
+	driver.findElement(By.xpath("(//Input[contains(@id,'inputEl')])[9]")).sendKeys(Keys.ENTER);
 	driver.findElement(By.xpath("(//*[contains(text(),'Apply')])[3]")).click();
 	Thread.sleep(5000);
 	driver.findElement(By.xpath("//table[contains(@id,'gridview')]//tbody/tr/td/div/div")).click(); // Click Checkbox TO select searched DO
@@ -287,9 +284,9 @@ public void testBackhaulTestCase4(String PurchaseOrder) throws Exception {
 
 }
 
-
-@Parameters({ "BackhaulPuchaseOrder" })
-@Test(priority = 5)
+*/
+//@Parameters({ "BackhaulPuchaseOrder" })
+@Test(priority = 5,dataProvider="DataContainer")
 public void testBackhaulTestCase5(String PurchaseOrder) throws Exception {
 
 
@@ -300,16 +297,14 @@ public void testBackhaulTestCase5(String PurchaseOrder) throws Exception {
 	driver.findElement(By.xpath("//div[@part='Distribution Orders' and @name='55681']/span")).click(); // select option distribution order
 	Thread.sleep(8000);
 	WebDriverWait wait=new WebDriverWait(driver, 30);
-	WebElement Search_DO = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath( "(//Input[contains(@id,'inputEl')])[6]"))); //find Primary field
+	WebElement Search_DO = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath( "(//Input[contains(@id,'inputEl')])[7]"))); //find Primary field
 	Search_DO.sendKeys("Distribution Order"); ////Enter primary Field as distribution Order
-	Thread.sleep(3000);
-	driver.findElement(By.xpath("(//Input[contains(@id,'inputEl')])[6]")).sendKeys(Keys.ENTER);
-	Thread.sleep(3000);
+	driver.findElement(By.xpath("(//Input[contains(@id,'inputEl')])[7]")).sendKeys(Keys.ENTER);
 	String DistOrder=PurchaseOrder.concat("_*");
 	Thread.sleep(3000);
-	driver.findElement(By.xpath("(//Input[contains(@id,'inputEl')])[8]")).sendKeys(DistOrder); //Enter distribution order
+	driver.findElement(By.xpath("(//Input[contains(@id,'inputEl')])[9]")).sendKeys(DistOrder); //Enter distribution order
 	Thread.sleep(6000);
-	driver.findElement(By.xpath("(//Input[contains(@id,'inputEl')])[8]")).sendKeys(Keys.ENTER);
+	driver.findElement(By.xpath("(//Input[contains(@id,'inputEl')])[9]")).sendKeys(Keys.ENTER);
 	driver.findElement(By.xpath("(//*[contains(text(),'Apply')])[3]")).click();
 	Thread.sleep(5000);
 	driver.findElement(By.xpath("//table[contains(@id,'gridview')]//tbody/tr/td/div/div")).click(); // Click Checkbox TO select searched DO
@@ -387,6 +382,18 @@ public void testBackhaulTestCase5(String PurchaseOrder) throws Exception {
 	}
 	
 
+	
+	   @DataProvider(name="DataContainer")
+	   public String[] myDataProvider() 
+	   {
+	      // Passing 2 set of data and each set contains single value
+	      //String data[]= new String[3];
+	      //data[0]= "A-205976";
+	      //data[1]= "A-205977";
+		   String[] data=MATLM.SpreadSheetRdWRdSingleColumn2.extractExcelContentByColumnIndex("/Users/nitinkumar/Desktop/Minakshi /Book1.xls","Sheet1",0);
+	  
+	      return data;
+	   }
 }
 
 

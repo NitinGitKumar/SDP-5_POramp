@@ -7,8 +7,8 @@ import java.util.concurrent.TimeUnit;
 import org.testng.Assert;
 import org.testng.annotations.*;
 
-import Backhaul_TLM.SpreadSheetRdWRdSingleColumn2;
-import utility.extractExcelContentByColumnRowIndex;
+import Excel_Utilities.extractExcelContentByColumnRowIndex;
+import MATLM.SpreadSheetRdWRdSingleColumn2;
 
 import static org.testng.Assert.*;
 
@@ -96,10 +96,10 @@ public class MultiLinePuchaseOrderValidation_MAWM {
 		driver.findElement(By.xpath("//a[contains(text(),'Purchase Order Line')]")).click();
 		Thread.sleep(5000);
 		
-    	String ExcelPOsitem=extractExcelContentByColumnRowIndex.extractExcelContentByColRowIndex("/Users/nitinkumar/Desktop/MATLMTestdata_Test.xls","Sheet1",3,28);
+    	String ExcelPOsitem=extractExcelContentByColumnRowIndex.extractExcelContentByColRowIndex("/TestNG_DDFramework_DataProvider/src/test/resources/MATLMTestData_TestDemo.xls","Sheet1",3,28);
     	Thread.sleep(2000);
 	
-    	String ExcelPOsQty=extractExcelContentByColumnRowIndex.extractExcelContentByColRowIndex("/Users/nitinkumar/Desktop/MATLMTestdata_Test.xls","Sheet1",3,29);
+    	String ExcelPOsQty=extractExcelContentByColumnRowIndex.extractExcelContentByColRowIndex("/TestNG_DDFramework_DataProvider/src/test/resources/MATLMTestData_TestDemo.xls","Sheet1",3,29);
     	Thread.sleep(2000);
     	
     	

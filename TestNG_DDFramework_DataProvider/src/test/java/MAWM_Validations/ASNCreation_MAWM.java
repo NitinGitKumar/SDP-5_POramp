@@ -4,7 +4,8 @@ import java.util.ArrayList;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 import org.testng.annotations.*;
-import Backhaul_TLM.SpreadSheetRdWRdSingleColumn2;
+
+import MATLM.SpreadSheetRdWRdSingleColumn2;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import static org.testng.Assert.*;
 import org.apache.commons.lang3.StringUtils;
@@ -33,15 +34,6 @@ public class ASNCreation_MAWM
 		WebDriverManager.chromedriver().setup();
 	  
 		driver= new ChromeDriver();
-
-	}
-
-
-	@Test(dataProvider="DataContainer")
-	public void POValidationMAWM(@Optional("A-206839")String PuchaseOrder) throws Exception {
-		 
-		
-
 		driver.get("https://stshs.sce.manh.com");
 		Thread.sleep(3000);
 		driver.manage().window().maximize();
@@ -53,7 +45,8 @@ public class ASNCreation_MAWM
 		driver.findElement(By.id("login-password")).sendKeys("Schneider0)");
 		Thread.sleep(2000);
 		driver.findElement(By.id("login-submit")).click();
-		Thread.sleep(12000);
+		Thread.sleep(15000);
+		
 		driver.findElement(By.xpath("//navbar[@id='home-page-navbar']/ion-toolbar/ion-menu-toggle/ion-button")).click();
 		Thread.sleep(3000);
 	    driver.findElement(By.name("ion-input-0")).sendKeys("ASNs");
@@ -62,6 +55,15 @@ public class ASNCreation_MAWM
 	    Thread.sleep(3000);
 	    driver.findElement(By.id("ASN")).click();
 	    Thread.sleep(10000);
+		
+
+	}
+
+
+	@Test(dataProvider="DataContainer")
+	public void POValidationMAWM(String PuchaseOrder) throws Exception {
+		
+		
 	    driver.findElement(By.xpath("//button[contains(text(),' Create ASN from PO ')]")).click();
 	    Thread.sleep(3000);
 /*
@@ -96,7 +98,7 @@ public class ASNCreation_MAWM
 	    Thread.sleep(3000);
 	    driver.findElement(By.xpath("//*[contains (text(),'OK')]")).click();
 	    
-	    Thread.sleep(4000);
+	    Thread.sleep(6000);
 	    
 	  ASN=driver.findElement(By.xpath("//div[1]/ion-row[2]/ion-col[1]/span")).getText();
 	    
@@ -105,6 +107,7 @@ public class ASNCreation_MAWM
 	    Thread.sleep(2000);
 	   driver.findElement(By.xpath("//*[contains (text(),' Save And Finish')]")).click();
 	    Thread.sleep(5000);
+	    
 	   
 	}
 
@@ -155,8 +158,12 @@ public class ASNCreation_MAWM
 	
 	@DataProvider(name="DataContainer")
 	   public String[] myDataProvider() 
+	   
+	   
 	   {
-		   String[] data= extractExcelContentByColumnIndex("/Users/nitinkumar/Desktop/Minakshi /Book1.xls","Sheet1",0);
+		
+		
+		 String[] data= SpreadSheetRdWRdSingleColumn2.extractExcelContentByColumnIndex("src/test/resources/MATLMTestData_TestDemo.xls","Sheet1",6);
 	  
 	      return data;
 	   }

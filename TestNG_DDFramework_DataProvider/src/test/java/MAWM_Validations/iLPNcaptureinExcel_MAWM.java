@@ -7,7 +7,7 @@ import java.util.concurrent.TimeUnit;
 import org.testng.Assert;
 import org.testng.annotations.*;
 
-import Backhaul_TLM.SpreadSheetRdWRdSingleColumn2;
+import MATLM.SpreadSheetRdWRdSingleColumn2;
 
 import static org.testng.Assert.*;
 
@@ -112,7 +112,7 @@ public class iLPNcaptureinExcel_MAWM {
 	    	finderQty=finderQty+12;
 	    }
 	    
-	    Backhaul_TLM.SpreadSheetRdWRdSingleColumn2.writeExcelByColumnRowIndex("/Users/nitinkumar/Desktop/Minakshi /Book1.xls","Sheet1",QtyFORExcel,1,12);
+	    MATLM.SpreadSheetRdWRdSingleColumn2.writeExcelByColumnRowIndex("/Users/nitinkumar/Desktop/Minakshi /Book1.xls","Sheet1",QtyFORExcel,1,12);
 	    Thread.sleep(3000);
 	    
 
