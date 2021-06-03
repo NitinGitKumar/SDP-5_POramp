@@ -4,12 +4,9 @@ import java.util.ArrayList;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 import org.testng.annotations.*;
-
 import Backhaul_TLM.SpreadSheetRdWRdSingleColumn2;
 import io.github.bonigarcia.wdm.WebDriverManager;
-
 import static org.testng.Assert.*;
-
 import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -20,7 +17,9 @@ import java.util.Formatter;
 import java.util.Iterator;
 
 
-public class ASNCreation_MAWM {
+public class ASNCreation_MAWM
+
+{
 
 	private WebDriver driver;
 	private boolean acceptNextAlert = true;
@@ -34,18 +33,11 @@ public class ASNCreation_MAWM {
 		WebDriverManager.chromedriver().setup();
 	  
 		driver= new ChromeDriver();
-		
-		 /*
-		System.setProperty("webdriver.gecko.driver", "/Users/nitinkumar/eclipse-workspace/Project2/Library/geckodriver/geckodriver");
-		driver= new FirefoxDriver(); 
-		System.setProperty("webdriver.chrome.driver", "/Users/nitinkumar/eclipse-workspace/Project2/Library/Chrome Driver/chromedriver");
- */
 
 	}
 
 
-	@Parameters({"PuchaseOrder"})
-	@Test
+	@Test(dataProvider="DataContainer")
 	public void POValidationMAWM(@Optional("A-206839")String PuchaseOrder) throws Exception {
 		 
 		
@@ -158,6 +150,16 @@ public class ASNCreation_MAWM {
 			acceptNextAlert = true;
 		}
 	}
+	
+	
+	
+	@DataProvider(name="DataContainer")
+	   public String[] myDataProvider() 
+	   {
+		   String[] data= extractExcelContentByColumnIndex("/Users/nitinkumar/Desktop/Minakshi /Book1.xls","Sheet1",0);
+	  
+	      return data;
+	   }
 }
 
 
